@@ -5,7 +5,7 @@
 <!-- sdlc:auto:start overview -->
 weight and height tracker for kids
 
-**Documentation version:** v2
+**Documentation version:** v3
 <!-- sdlc:auto:end overview -->
 
 ## Contents
@@ -15,14 +15,14 @@ weight and height tracker for kids
 |---|---|
 | [Requirements](requirements/README.md) | v1 approved |
 | [Architecture](architecture/README.md) | 13 entries |
-| [Development](development/README.md) | 1 entry |
+| [Development](development/README.md) | 8 entries |
 | [Testing](testing/README.md) | 1 entry |
 | [Deployment](deployment/README.md) | 1 entry |
 | [Maintenance](maintenance/README.md) | 1 entry |
 | [Data model](architecture/data-model.md) | generated |
 | [API (OpenAPI)](architecture/api/openapi.yaml) | generated |
 | [Decisions (ADRs)](architecture/adr/README.md) | 4 decisions |
-| [Sprint plan](development/sprint-plan.md) | not generated yet |
+| [Sprint plan](development/sprint-plan.md) | 7 sprints |
 | [Developer guide](development/developer-guide.md) | generated |
 | [API reference](development/api-reference.md) | 1 route |
 | [Test report](testing/test-report.md) | not run yet |
@@ -30,8 +30,8 @@ weight and height tracker for kids
 | [Deployment guide](deployment/deployment-guide.md) | not deployed yet |
 | [Runbook](deployment/runbook.md) | not deployed yet |
 | [Release notes](deployment/release-notes.md) | 0 releases |
-| [Traceability matrix](traceability-matrix.md) | 0 requirements |
-| [Changelog](CHANGELOG.md) | 2 versions |
+| [Traceability matrix](traceability-matrix.md) | 20 requirements |
+| [Changelog](CHANGELOG.md) | 3 versions |
 <!-- sdlc:auto:end contents -->
 
 ## Open gaps
@@ -52,7 +52,16 @@ weight and height tracker for kids
 
 ### Development
 
-- Development phase has not started; no implementation of any requirement is documented.
+- No actual development execution evidence (commits, code artifacts, ticket status, test results) has been provided for any sprint or story -- only the approved plan/backlog is available.
+- Role assignment for US-006 (qa-agent) differs from the otherwise backend/frontend split seen elsewhere in the backlog; input does not explain the rationale, so this is noted rather than assumed.
+- No completion status, code commits, or test results reported for Sprint 1 items yet.
+- No completion status, code commits, or test results reported for Sprint 2 items yet.
+- US-006 is assigned to qa-agent rather than a development role; input gives no rationale for this assignment.
+- No completion status, code commits, or test results reported for Sprint 3 items yet.
+- No completion status, code commits, or test results reported for Sprint 4 items yet.
+- No completion status, code commits, or test results reported for Sprint 5 items yet.
+- No completion status, code commits, or test results reported for Sprint 6 items yet.
+- No completion status, code commits, or test results reported for Sprint 7 items yet.
 
 ### Testing
 
