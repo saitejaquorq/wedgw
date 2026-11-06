@@ -2,6 +2,324 @@
 openapi: 3.1.0
 info:
   title: wedgw
-  version: architecture-v0
+  version: architecture-v1
   description: Designed API from the approved architecture (not extracted from code).
-paths: {}
+paths:
+  /auth/login:
+    post:
+      summary: Sign in and receive a JWT.
+      description: Sign in and receive a JWT.
+      operationId: post_auth_login
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{email, password}'
+      responses:
+        '200':
+          description: '{access_token, token_type}'
+  /auth/logout:
+    post:
+      summary: Sign out (client discards token).
+      description: Sign out (client discards token).
+      operationId: post_auth_logout
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: none
+      responses:
+        '200':
+          description: '{status}'
+      security:
+      - bearerAuth: []
+  /auth/register:
+    post:
+      summary: Create a new parent account.
+      description: Create a new parent account.
+      operationId: post_auth_register
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{email, password}'
+      responses:
+        '200':
+          description: '{id, email, access_token}'
+  /children:
+    get:
+      summary: List the signed-in parent's children for the overview dashboard.
+      description: List the signed-in parent's children for the overview dashboard.
+      operationId: get_children
+      parameters: []
+      responses:
+        '200':
+          description: '[{id, name, date_of_birth, sex}]'
+      security:
+      - bearerAuth: []
+    post:
+      summary: Create a child profile.
+      description: Create a child profile.
+      operationId: post_children
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{name, date_of_birth, sex?}'
+      responses:
+        '200':
+          description: '{id, name, date_of_birth, sex}'
+      security:
+      - bearerAuth: []
+  /children/{child_id}:
+    get:
+      summary: Get one child's profile.
+      description: Get one child's profile.
+      operationId: get_children_child_id
+      parameters:
+      - name: child_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '{id, name, date_of_birth, sex}'
+      security:
+      - bearerAuth: []
+    patch:
+      summary: Edit a child profile.
+      description: Edit a child profile.
+      operationId: patch_children_child_id
+      parameters:
+      - name: child_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{name?, date_of_birth?, sex?}'
+      responses:
+        '200':
+          description: '{id, name, date_of_birth, sex}'
+      security:
+      - bearerAuth: []
+    delete:
+      summary: Delete a child profile and its measurements.
+      description: Delete a child profile and its measurements.
+      operationId: delete_children_child_id
+      parameters:
+      - name: child_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '{status}'
+      security:
+      - bearerAuth: []
+  /children/{child_id}/measurements:
+    get:
+      summary: List a child's measurements (optionally filtered by type) in the chosen
+        units for history and charts.
+      description: List a child's measurements (optionally filtered by type) in the
+        chosen units for history and charts.
+      operationId: get_children_child_id_measurements
+      parameters:
+      - name: child_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '[{id, type, value, unit, taken_on}]'
+      security:
+      - bearerAuth: []
+    post:
+      summary: Record a weight or height measurement.
+      description: Record a weight or height measurement.
+      operationId: post_children_child_id_measurements
+      parameters:
+      - name: child_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{type, value, unit, taken_on}'
+      responses:
+        '200':
+          description: '{id, type, value, unit, taken_on}'
+      security:
+      - bearerAuth: []
+  /children/{child_id}/measurements/{id}:
+    patch:
+      summary: Edit a measurement value or date.
+      description: Edit a measurement value or date.
+      operationId: patch_children_child_id_measurements_id
+      parameters:
+      - name: child_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{value?, unit?, taken_on?}'
+      responses:
+        '200':
+          description: '{id, type, value, unit, taken_on}'
+      security:
+      - bearerAuth: []
+    delete:
+      summary: Delete a measurement entry.
+      description: Delete a measurement entry.
+      operationId: delete_children_child_id_measurements_id
+      parameters:
+      - name: child_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '{status}'
+      security:
+      - bearerAuth: []
+  /me:
+    get:
+      summary: Get current parent and preferred unit system.
+      description: Get current parent and preferred unit system.
+      operationId: get_me
+      parameters: []
+      responses:
+        '200':
+          description: '{id, email, preferred_unit_system}'
+      security:
+      - bearerAuth: []
+  /me/preferences:
+    patch:
+      summary: Update preferred unit system (metric or imperial).
+      description: Update preferred unit system (metric or imperial).
+      operationId: patch_me_preferences
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{preferred_unit_system}'
+      responses:
+        '200':
+          description: '{preferred_unit_system}'
+      security:
+      - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    parents:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+        password_hash:
+          type: string
+        preferred_unit_system:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - email
+      - password_hash
+      - preferred_unit_system
+      - created_at
+    children:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        parent_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        sex:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - parent_id
+      - name
+      - date_of_birth
+      - created_at
+    measurements:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        child_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+        value_metric:
+          type: number
+        taken_on:
+          type: string
+          format: date
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - child_id
+      - type
+      - value_metric
+      - taken_on
+      - created_at

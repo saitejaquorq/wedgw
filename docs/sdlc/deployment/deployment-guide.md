@@ -7,7 +7,11 @@ Pushes to `main` run `.github/workflows/deploy.yml`, which builds the API image 
 <!-- sdlc:auto:end how-it-deploys -->
 
 <!-- sdlc:auto:start environments -->
-_No environments recorded._
+| Name | Service | Runtime | Scaling | Environment |
+|---|---|---|---|---|
+| Frontend hosting | AWS S3 + CloudFront | React 19 static build | CDN edge, auto | dev |
+| Backend service | AWS ECS Fargate | FastAPI 0.115 on Python 3.12 (Uvicorn) | 1 task for dev, horizontally scalable | dev |
+| Database | AWS RDS for PostgreSQL 16 | PostgreSQL 16 | single instance for dev | dev |
 <!-- sdlc:auto:end environments -->
 
 <!-- sdlc:auto:start live -->
@@ -15,5 +19,12 @@ _Not deployed yet._
 <!-- sdlc:auto:end live -->
 
 <!-- sdlc:auto:start topology -->
-_No deployment topology recorded._
+```mermaid
+graph LR
+  n_Frontend_hosting["Frontend hosting<br/>AWS S3 + CloudFront"]
+  n_Backend_service["Backend service<br/>AWS ECS Fargate"]
+  n_Database["Database<br/>AWS RDS for PostgreSQL 16"]
+  n_Frontend_hosting -->|"HTTPS"| n_Backend_service
+  n_Backend_service -->|"TLS/5432"| n_Database
+```
 <!-- sdlc:auto:end topology -->

@@ -7,7 +7,22 @@ _No routes found._
 <!-- sdlc:auto:end endpoints -->
 
 <!-- sdlc:auto:start drift -->
-_Code matches the designed API._
+**Designed but missing:**
+
+- DELETE /children/{child_id}
+- DELETE /children/{child_id}/measurements/{id}
+- GET /children
+- GET /children/{child_id}
+- GET /children/{child_id}/measurements
+- GET /me
+- PATCH /children/{child_id}
+- PATCH /children/{child_id}/measurements/{id}
+- PATCH /me/preferences
+- POST /auth/login
+- POST /auth/logout
+- POST /auth/register
+- POST /children
+- POST /children/{child_id}/measurements
 <!-- sdlc:auto:end drift -->
 
 <!-- sdlc:auto:start source -->

@@ -5,7 +5,7 @@
 <!-- sdlc:auto:start overview -->
 weight and height tracker for kids
 
-**Documentation version:** v1
+**Documentation version:** v2
 <!-- sdlc:auto:end overview -->
 
 ## Contents
@@ -14,14 +14,14 @@ weight and height tracker for kids
 | Document | State |
 |---|---|
 | [Requirements](requirements/README.md) | v1 approved |
-| [Architecture](architecture/README.md) | 1 entry |
+| [Architecture](architecture/README.md) | 13 entries |
 | [Development](development/README.md) | 1 entry |
 | [Testing](testing/README.md) | 1 entry |
 | [Deployment](deployment/README.md) | 1 entry |
 | [Maintenance](maintenance/README.md) | 1 entry |
-| [Data model](architecture/data-model.md) | not generated yet |
-| [API (OpenAPI)](architecture/api/openapi.yaml) | not generated yet |
-| [Decisions (ADRs)](architecture/adr/README.md) | 0 decisions |
+| [Data model](architecture/data-model.md) | generated |
+| [API (OpenAPI)](architecture/api/openapi.yaml) | generated |
+| [Decisions (ADRs)](architecture/adr/README.md) | 4 decisions |
 | [Sprint plan](development/sprint-plan.md) | not generated yet |
 | [Developer guide](development/developer-guide.md) | not generated yet |
 | [API reference](development/api-reference.md) | 0 routes |
@@ -31,7 +31,7 @@ weight and height tracker for kids
 | [Runbook](deployment/runbook.md) | not deployed yet |
 | [Release notes](deployment/release-notes.md) | 0 releases |
 | [Traceability matrix](traceability-matrix.md) | 0 requirements |
-| [Changelog](CHANGELOG.md) | 1 version |
+| [Changelog](CHANGELOG.md) | 2 versions |
 <!-- sdlc:auto:end contents -->
 
 ## Open gaps
@@ -43,7 +43,12 @@ weight and height tracker for kids
 
 ### Architecture
 
-- Architecture phase has not started; no design decisions, diagrams, or technology mapping are documented.
+- No requirements-phase input was provided for this project, so this architecture's references to NFR-001 through NFR-005 cannot be traced back to an approved requirements document.
+- Entity list does not include a units/preferences table separate from parents.preferred_unit_system -- confirm this single field is sufficient for the PATCH /me/preferences endpoint's needs.
+- NFR-004 and NFR-005 are referenced but no requirements-phase input exists yet to confirm their exact wording or approval.
+- NFR-002 is referenced but no requirements-phase input exists yet to confirm its exact wording or approval.
+- NFR-003 is referenced but no requirements-phase input exists yet to confirm its exact wording or approval.
+- NFR-001 is referenced but no requirements-phase input exists yet to confirm its exact wording or approval.
 
 ### Development
 
